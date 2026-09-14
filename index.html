@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran IPA Kelas 7 - Identifikasi Makhluk Hidup</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            50: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(219, 234, 254, 0.8);
+        }
+        
+        .tab-active {
+            background-color: #1d4ed8;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.3);
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-certificate, #printable-certificate * {
+                visibility: visible;
+            }
+            #printable-certificate {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 text-white shadow-lg sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('beranda')">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center border border-white/20">
+                        <i class="fa-solid font-bold text-xl text-cyan-300 fa-dna"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-white">Biologi SMP Kelas 7</h1>
+                        <p class="text-xs text-brand-200 font-medium mt-0.5">Identifikasi & Klasifikasi Makhluk Hidup</p>
+                    </div>
+                </div>
+
+                <!-- User Profile / Class Badge -->
+                <div class="hidden sm:flex items-center space-x-3 bg-white/10 px-3 py-1.5 rounded-full border border-white/15">
+                    <i class="fa-solid fa-graduation-cap text-cyan-300 text-sm"></i>
+                    <span class="text-xs font-semibold text-white">Guru: Pak Ahmad, S.Pd.</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Menu Bar -->
+        <nav class="bg-brand-950/40 backdrop-blur border-t border-white/10 px-2 overflow-x-auto">
+            <div class="max-w-7xl mx-auto flex space-x-1 sm:space-x-2 py-2 text-xs sm:text-sm font-medium">
+                <button id="btn-beranda" onclick="switchTab('beranda')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all tab-active">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Beranda</span>
+                </button>
+                <button id="btn-materi" onclick="switchTab('materi')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap text-brand-100 hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Materi</span>
+                </button>
+                <button id="btn-game" onclick="switchTab('game')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap text-brand-100 hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Mini Game</span>
+                </button>
+                <button id="btn-latihan" onclick="switchTab('latihan')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap text-brand-100 hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                    <span>Pelatihan Soal</span>
+                </button>
+                <button id="btn-penilaian" onclick="switchTab('penilaian')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap text-brand-100 hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span>Penilaian</span>
+                </button>
+                <button id="btn-refleksi" onclick="switchTab('refleksi')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap text-brand-100 hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-brain"></i>
+                    <span>Refleksi</span>
+                </button>
+                <button id="btn-sertifikat" onclick="switchTab('sertifikat')" class="nav-btn px-3 py-2 rounded-lg flex items-center space-x-2 whitespace-nowrap text-brand-100 hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Sertifikat</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- TAB 1: BERANDA -->
+        <section id="tab-beranda" class="tab-content space-y-6">
+            <!-- Welcome Banner -->
+            <div class="relative bg-gradient-to-r from-brand-700 to-indigo-800 rounded-3xl p-6 sm:p-10 text-white shadow-xl overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-15 text-white pointer-events-none">
+                    <i class="fa-solid fa-microscope text-[240px]"></i>
+                </div>
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-cyan-400/20 text-cyan-200 border border-cyan-400/30 mb-4">
+                        <i class="fa-solid fa-sparkles mr-1.5"></i> Media Pembelajaran Interaktif IPA
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Selamat Datang di Modul Identifikasi Makhluk Hidup!</h2>
+                    <p class="mt-3 text-brand-100 text-sm sm:text-base leading-relaxed">
+                        Tahukah kamu bagaimana para ilmuwan mengelompokkan jutaan jenis hewan dan tumbuhan di bumi? Mari kita pelajari ciri-ciri kehidupan, kunci determinasi, dan klasifikasi 5 kingdom dengan cara yang menyenangkan!
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <button onclick="switchTab('materi')" class="px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-brand-950 font-bold text-sm shadow-md transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Mulai Belajar Materi
+                        </button>
+                        <button onclick="switchTab('game')" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i> Mainkan Mini Game
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Progress Card & Menu Overview Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Progress Tracker -->
+                <div class="glass-card rounded-2xl p-6 shadow-sm border border-brand-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-slate-800 text-lg">Kemajuan Belajar</h3>
+                            <span class="p-2 rounded-lg bg-brand-50 text-brand-600"><i class="fa-solid fa-chart-pie"></i></span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">Selesaikan semua tahapan materi untuk mengunduh sertifikat kamu.</p>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-600">Total Progres</span>
+                                    <span id="overall-progress-text" class="text-brand-700">0%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                                    <div id="overall-progress-bar" class="bg-brand-600 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500 flex justify-between items-center">
+                        <span>Status Evaluasi:</span>
+                        <span id="quiz-status-badge" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Belum Selesai</span>
+                    </div>
+                </div>
+
+                <!-- Feature Quick Cards -->
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div onclick="switchTab('materi')" class="glass-card p-5 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-pointer group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center text-xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 group-hover:text-brand-700 transition-colors">1. Materi Pembelajaran</h4>
+                        <p class="text-xs text-slate-500 mt-1">Pelajari ciri kehidupan, cara menggunakan kunci determinasi & sistem 5 kingdom.</p>
+                    </div>
+
+                    <div onclick="switchTab('game')" class="glass-card p-5 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-pointer group">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-magnifying-glass font-bold"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 group-hover:text-cyan-700 transition-colors">2. Detektif Taksonomi</h4>
+                        <p class="text-xs text-slate-500 mt-1">Simulasi interaktif mengidentifikasi organisme menggunakan kunci dikotomi.</p>
+                    </div>
+
+                    <div onclick="switchTab('latihan')" class="glass-card p-5 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-pointer group">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-vial-circle-check"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">3. Pelatihan Soal</h4>
+                        <p class="text-xs text-slate-500 mt-1">Uji pemahamanmu dengan latihan soal mandiri lengkap dengan pembahasan.</p>
+                    </div>
+
+                    <div onclick="switchTab('penilaian')" class="glass-card p-5 rounded-2xl hover:border-brand-300 hover:shadow-md transition-all cursor-pointer group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">4. Penilaian & Sertifikat</h4>
+                        <p class="text-xs text-slate-500 mt-1">Selesaikan kuis evaluasi akhir untuk mendapatkan sertifikat kelulusan modul.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MATERI PEMBELAJARAN -->
+        <section id="tab-materi" class="tab-content hidden space-y-6">
+            <!-- Section Header -->
+            <div class="border-b border-brand-100 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-brand-600"></i> Materi Pembelajaran
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Pilih topik materi di bawah ini untuk mulai belajar.</p>
+                </div>
+                <!-- Sub-tabs for topics -->
+                <div class="flex bg-slate-200/70 p-1 rounded-xl text-xs font-semibold">
+                    <button id="subtab-materi-1" onclick="switchMateriSubTab(1)" class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-brand-700">Ciri Makhluk Hidup</button>
+                    <button id="subtab-materi-2" onclick="switchMateriSubTab(2)" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-brand-700">Kunci Determinasi</button>
+                    <button id="subtab-materi-3" onclick="switchMateriSubTab(3)" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-brand-700">Klasifikasi 5 Kingdom</button>
+                </div>
+            </div>
+
+            <!-- Materi Sub-content 1: Ciri Makhluk Hidup -->
+            <div id="materi-content-1" class="materi-subcontent space-y-6">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-brand-600">
+                    <h3 class="text-lg font-bold text-brand-900 mb-2">7 Ciri Utama Makhluk Hidup</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Benda di sekitar kita dibagi menjadi makhluk hidup (biotik) dan benda tak hidup (abiotik). Suatu objek dikatakan sebagai makhluk hidup jika memenuhi ciri-ciri kehidupan berikut:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Cards for 7 characteristics -->
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fa-solid fa-lungs"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">1. Bernapas (Respirasi)</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                            Mengambil oksigen ($O_2$) untuk memecah zat makanan menjadi energi dan mengeluarkan karbondioksida ($CO_2$).
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">2. Memerlukan Nutrisi</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                            Makhluk hidup membutuhkan makanan dan minuman sebagai sumber energi, pertumbuhan, dan mengganti sel rusak.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fa-solid fa-person-walking"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">3. Bergerak</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                            Hewan bergerak aktif (berpindah tempat), sedangkan tumbuhan bergerak pasif (misal: mekar bunga atau arah sulur).
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">4. Tumbuh & Berkembang</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                            <strong>Tumbuh:</strong> Bertambah ukuran/tinggi (irreversible). <br><strong>Berkembang:</strong> Proses menuju kedewasaan organ.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fa-solid fa-baby"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">5. Berkembang Biak</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                            Tujuan berkembang biak (reproduksi) adalah untuk mempertahankan kelestarian jenisnya agar tidak punah.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-3">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">6. Peka Terhadap Rangsang</h4>
+                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                            Iritabilitas: Kemampuan merespons rangsangan dari luar (cahaya, sentuhan, suhu, kimia). Contoh: Putri malu menutup saat disentuh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materi Sub-content 2: Kunci Determinasi -->
+            <div id="materi-content-2" class="materi-subcontent hidden space-y-6">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-600">
+                    <h3 class="text-lg font-bold text-brand-900 mb-2">Apa itu Kunci Determinasi (Dikotomi)?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Kunci determinasi adalah daftar yang memuat sejumlah keterangan tentang suatu makhluk hidup yang digunakan untuk mengidentifikasi dan menentukan kelompok organisme tersebut. Kunci ini disusun berpasangan (dikotomi) dengan ciri yang berlawanan.
+                    </p>
+                </div>
+
+                <!-- Example Table / Step Guide -->
+                <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm space-y-4">
+                    <h4 class="font-bold text-slate-800 text-base">Contoh Sederhana Kunci Determinasi Hewan:</h4>
+                    
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="p-3 bg-brand-50/60 rounded-xl flex justify-between items-center">
+                            <span><strong>1a.</strong> Bertulang belakang (Vertebrata)</span>
+                            <span class="text-brand-700 font-semibold">Lanjut ke No 2</span>
+                        </div>
+                        <div class="p-3 bg-brand-50/60 rounded-xl flex justify-between items-center">
+                            <span><strong>1b.</strong> Tidak bertulang belakang (Invertebrata)</span>
+                            <span class="text-brand-700 font-semibold">Lanjut ke No 3</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
+                            <span><strong>2a.</strong> Menyusui anaknya (Mamalia)</span>
+                            <span class="px-2 py-1 bg-emerald-100 text-emerald-800 rounded font-bold">Kucing / Sapi</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
+                            <span><strong>2b.</strong> Tubuh ditutupi bulu (Aves)</span>
+                            <span class="px-2 py-1 bg-emerald-100 text-emerald-800 rounded font-bold">Ayam / Burung</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
+                            <span><strong>3a.</strong> Tubuh beruas-ruas & kaki 6 (Serangga)</span>
+                            <span class="px-2 py-1 bg-emerald-100 text-emerald-800 rounded font-bold">Kupu-kupu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materi Sub-content 3: Klasifikasi 5 Kingdom -->
+            <div id="materi-content-3" class="materi-subcontent hidden space-y-6">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-indigo-600">
+                    <h3 class="text-lg font-bold text-brand-900 mb-2">Sistem Klasifikasi 5 Kingdom (Robert H. Whittaker)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Para ilmuwan membagi seluruh makhluk hidup di bumi menjadi 5 kelompok besar (Kingdom) berdasarkan struktur sel, cara mendapatkan makanan, dan keanekaragaman organ tubuh.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Kingdom Monera -->
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">1. Monera</span>
+                        <h4 class="font-bold text-slate-800 mt-3">Prokariotik (Tanpa Membran Inti)</h4>
+                        <p class="text-xs text-slate-500 mt-2">Ukuran mikroskopis, bersel satu (uniseluler). <br><strong>Contoh:</strong> Bakteri <i>E. coli</i>, Ganggang biru-hijau.</p>
+                    </div>
+
+                    <!-- Kingdom Protista -->
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-cyan-100 text-cyan-800">2. Protista</span>
+                        <h4 class="font-bold text-slate-800 mt-3">Eukariotik Sederhana</h4>
+                        <p class="text-xs text-slate-500 mt-2">Memiliki membran inti sel, ada yang mirip hewan/tumbuhan/jamur. <br><strong>Contoh:</strong> <i>Amoeba</i>, <i>Paramecium</i>, Alga.</p>
+                    </div>
+
+                    <!-- Kingdom Fungi -->
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">3. Fungi (Jamur)</span>
+                        <h4 class="font-bold text-slate-800 mt-3">Heterotrof (Tidak Berklorofil)</h4>
+                        <p class="text-xs text-slate-500 mt-2">Dinding sel dari zat kitin, menyerap nutrisi dari lingkungan. <br><strong>Contoh:</strong> Jamur Tiram, Ragi (Yeast).</p>
+                    </div>
+
+                    <!-- Kingdom Plantae -->
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">4. Plantae (Tumbuhan)</span>
+                        <h4 class="font-bold text-slate-800 mt-3">Autotrof (Fotosintesis)</h4>
+                        <p class="text-xs text-slate-500 mt-2">Multiseluler, memiliki klorofil untuk membuat makanan sendiri. <br><strong>Contoh:</strong> Lumut, Paku, Tumbuhan Berbiji.</p>
+                    </div>
+
+                    <!-- Kingdom Animalia -->
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800">5. Animalia (Hewan)</span>
+                        <h4 class="font-bold text-slate-800 mt-3">Heterotrof Active Move</h4>
+                        <p class="text-xs text-slate-500 mt-2">Multiseluler, bergerak aktif, memakan organisme lain. <br><strong>Contoh:</strong> Ikan, Burung, Mamalia, Serangga.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: MINI GAME -->
+        <section id="tab-game" class="tab-content hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-brand-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <span class="px-3 py-1 bg-cyan-100 text-cyan-800 text-xs font-bold rounded-full">Mini Game Interaktif</span>
+                        <h2 class="text-2xl font-bold text-slate-800 mt-1">Detektif Taksonomi 🔍</h2>
+                        <p class="text-xs text-slate-500">Bantu detektif mengidentifikasi spesies misterius menggunakan kunci determinasi!</p>
+                    </div>
+                    <div class="bg-brand-50 px-4 py-2 rounded-xl text-center border border-brand-200">
+                        <span class="text-xs text-slate-500 block">Skor Game</span>
+                        <span id="game-score" class="text-xl font-extrabold text-brand-700">0 Pts</span>
+                    </div>
+                </div>
+
+                <!-- Game Container -->
+                <div id="game-box" class="bg-slate-900 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+                    <div id="game-screen-start" class="text-center py-8 space-y-4">
+                        <div class="w-20 h-20 rounded-full bg-brand-600/30 text-cyan-400 flex items-center justify-center text-4xl mx-auto border border-cyan-400/30">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Siap Mengidentifikasi Spesies?</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
+                            Kamu akan diberikan petunjuk ciri-ciri fisik makhluk hidup. Pilih jalur kunci determinasi yang benar untuk menebak nama spesies!
+                        </p>
+                        <button onclick="startGame()" class="px-6 py-3 bg-brand-600 hover:bg-brand-500 font-bold rounded-xl text-sm transition-all shadow-lg hover:shadow-brand-500/50">
+                            <i class="fa-solid fa-play mr-2"></i> Mulai Detektif Game
+                        </button>
+                    </div>
+
+                    <!-- Interactive Game Play -->
+                    <div id="game-screen-play" class="hidden space-y-6">
+                        <!-- Clue & Specimen Box -->
+                        <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 flex flex-col sm:flex-row items-center gap-4">
+                            <div class="w-16 h-16 rounded-xl bg-brand-900/80 text-cyan-300 flex items-center justify-center text-3xl font-bold shrink-0">
+                                <i id="specimen-icon" class="fa-solid fa-paw"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-cyan-400 font-semibold tracking-wider uppercase">Spesimen Rahasia #<span id="specimen-number">1</span></span>
+                                <h4 class="text-base font-bold text-white mt-0.5">Petunjuk Pengamatan:</h4>
+                                <p id="specimen-clue" class="text-xs sm:text-sm text-slate-300 italic mt-1 font-mono">"Organisme ini bergerak bebas, menyusui anaknya, dan memiliki daun telinga."</p>
+                            </div>
+                        </div>
+
+                        <!-- Dichotomous Question Choice -->
+                        <div class="space-y-3">
+                            <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pilih Opsi Kunci Determinasi yang Tepat:</h5>
+                            <div id="game-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Dynamic Options loaded via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: PELATIHAN SOAL -->
+        <section id="tab-latihan" class="tab-content hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-brand-100 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-pen-ruler text-brand-600"></i> Pelatihan Soal Mandiri
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Latihan soal interaktif dengan pembahasan instan untuk memperkuat konsep.</p>
+                    </div>
+                </div>
+
+                <!-- Latihan Question Container -->
+                <div id="latihan-container" class="space-y-6">
+                    <!-- Dynamic Question Card -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: PENILAIAN / EVALUASI -->
+        <section id="tab-penilaian" class="tab-content hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-brand-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-3">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-check text-brand-600"></i> Penilaian Hasil Belajar
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Evaluasi resmi untuk mengukur ketercapaian pemahaman materi (KKTP Minimal: 75%).</p>
+                    </div>
+                    <div id="quiz-score-display" class="hidden px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
+                        <span class="text-xs text-emerald-600 font-semibold block">Skor Ujian Anda</span>
+                        <span id="final-score-val" class="text-2xl font-black text-emerald-700">0</span>
+                    </div>
+                </div>
+
+                <!-- Quiz Start Screen -->
+                <div id="quiz-start-screen" class="text-center py-10 space-y-4 max-w-md mx-auto">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-3xl mx-auto font-bold">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">Evaluasi Akhir Modul IPA</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Evaluasi terdiri dari 5 soal pilihan ganda. Pastikan kamu sudah mempelajari seluruh materi dan melakukan latihan sebelum memulai!
+                    </p>
+                    <button onclick="startQuiz()" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-md">
+                        Mulai Ujian Evaluasi
+                    </button>
+                </div>
+
+                <!-- Quiz Form Container -->
+                <div id="quiz-form-screen" class="hidden space-y-6">
+                    <div id="quiz-questions-list" class="space-y-6">
+                        <!-- Questions injected dynamically -->
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 flex justify-end">
+                        <button onclick="submitQuiz()" class="px-6 py-3 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-xl text-sm shadow-lg transition">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Kirim Jawaban & Lihat Hasil
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: REFLEKSI PEMBELAJARAN -->
+        <section id="tab-refleksi" class="tab-content hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-brand-100 shadow-sm">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-brand-600"></i> Lembar Refleksi Diri
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Ungkapkan perasaan dan tingkat pemahamanmu setelah mempelajari modul ini.</p>
+                </div>
+
+                <form id="refleksi-form" onsubmit="saveRefleksi(event)" class="space-y-6">
+                    <!-- Self Assessment Checklist -->
+                    <div class="space-y-3">
+                        <label class="font-bold text-sm text-slate-800 block">1. Apakah kamu dapat menyebutkan 7 ciri makhluk hidup?</label>
+                        <div class="flex gap-4 text-xs font-semibold">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="ref1" value="sangat_paham" class="text-brand-600" required> Sangat Paham
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="ref1" value="paham" class="text-brand-600"> Cukup Paham
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="ref1" value="butuh_bantuan" class="text-brand-600"> Masih Perlu Belajar
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="font-bold text-sm text-slate-800 block">2. Seberapa mudah kamu mengoperasikan kunci determinasi?</label>
+                        <div class="flex gap-4 text-xs font-semibold">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="ref2" value="sangat_mudah" class="text-brand-600" required> Sangat Mudah
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="ref2" value="sedang" class="text-brand-600"> Cukup Bisa
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="ref2" value="sulit" class="text-brand-600"> Masih Bingung
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-bold text-sm text-slate-800 block">3. Bagian materi apa yang paling menarik bagi kamu?</label>
+                        <textarea id="refleksi-catatan" rows="3" class="w-full p-3 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="Tuliskan pendapatmu di sini..."></textarea>
+                    </div>
+
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition">
+                        Simpan Hasil Refleksi
+                    </button>
+                    <span id="refleksi-saved-msg" class="hidden text-xs text-emerald-600 font-semibold ml-3"><i class="fa-solid fa-check-circle"></i> Refleksi berhasil disimpan!</span>
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB 7: SERTIFIKAT PENYELESAIAN -->
+        <section id="tab-sertifikat" class="tab-content hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-brand-100 shadow-sm no-print">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-certificate text-brand-600"></i> Sertifikat Kelulusan Modul
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Sertifikat ini terbuka setelah kamu menyelesaikan Penilaian akhir dengan nilai minimal 75.</p>
+                    </div>
+                    <button id="btn-print-cert" onclick="window.print()" class="px-5 py-2.5 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-print"></i> Cetak / Unduh PDF
+                    </button>
+                </div>
+
+                <!-- Input Name Container -->
+                <div class="mt-4 p-4 bg-brand-50 rounded-xl border border-brand-200 flex flex-col sm:flex-row items-center gap-3">
+                    <label class="text-xs font-bold text-brand-900 whitespace-nowrap">Nama Lengkap Siswa:</label>
+                    <input type="text" id="cert-student-name" oninput="updateCertName()" placeholder="Masukkan nama kamu untuk sertifikat" class="w-full p-2 bg-white border border-brand-300 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+            </div>
+
+            <!-- CERTIFICATE DISPLAY AREA -->
+            <div class="flex justify-center">
+                <div id="printable-certificate" class="w-full max-w-3xl bg-white border-8 border-brand-800 p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden my-4 text-center">
+                    <!-- Ornamental Corner Backgrounds -->
+                    <div class="absolute top-0 left-0 w-24 h-24 bg-brand-900 clip-corner"></div>
+                    <div class="absolute bottom-0 right-0 w-24 h-24 bg-brand-700 clip-corner"></div>
+
+                    <!-- Certificate Content Header -->
+                    <div class="space-y-2">
+                        <div class="w-16 h-16 rounded-full bg-brand-50 border-2 border-brand-600 text-brand-700 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h3 class="text-xs font-extrabold uppercase tracking-widest text-brand-700">Sertifikat Kelulusan Modul IPA</h3>
+                        <h1 class="text-2xl sm:text-4xl font-serif font-black text-slate-900">IDENTIFIKASI MAKHLUK HIDUP</h1>
+                        <p class="text-xs text-slate-400">SMP Kelas 7 - Kurikulum Merdeka</p>
+                    </div>
+
+                    <div class="my-6 border-t border-b border-brand-100 py-6 space-y-3">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider">Diberikan Kepada Siswa Terbaik:</p>
+                        <h2 id="cert-display-name" class="text-xl sm:text-3xl font-bold text-brand-900 underline decoration-brand-400 font-serif">
+                            [ Nama Siswa ]
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed pt-2">
+                            Telah secara tuntas mempelajari seluruh materi pembelajaran, menyelesaikan tantangan simulasi Kunci Determinasi, serta lulus Evaluasi Akhir dengan nilai:
+                        </p>
+                        <div class="inline-block px-4 py-1.5 bg-brand-50 text-brand-800 rounded-full text-sm font-extrabold border border-brand-200">
+                            Nilai Evaluasi: <span id="cert-display-score">0</span> / 100
+                        </div>
+                    </div>
+
+                    <!-- Certificate Footer Signatures -->
+                    <div class="grid grid-cols-2 gap-8 pt-4 text-xs text-slate-600">
+                        <div>
+                            <p class="text-[10px] text-slate-400">Tanggal Penyelesaian</p>
+                            <p id="cert-date" class="font-bold text-slate-800 mt-1">14 September 2026</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-400">Guru Mata Pelajaran IPA</p>
+                            <p class="font-bold text-slate-800 mt-1">Ahmad, S.Pd.</p>
+                            <p class="text-[9px] text-slate-400">NIP. 19880412 201201 1 003</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs no-print">
+        <p>© 2026 Media Pembelajaran Interaktif IPA Kelas 7 SMP - Tema Biru Pendidikan.</p>
+    </footer>
+
+    <script>
+        /* State Variables */
+        let currentProgress = {
+            materi: false,
+            game: false,
+            latihan: false,
+            quizPassed: false,
+            quizScore: 0
+        };
+
+        /* Data: Pelatihan Soal */
+        const dataLatihan = [
+            {
+                id: 1,
+                question: "Ketika daun tanaman putri malu (*Mimosa pudica*) disentuh, daunnya akan mengatup. Hal ini membuktikan bahwa makhluk hidup memiliki ciri...",
+                options: [
+                    "A. Memerlukan makanan",
+                    "B. Peka terhadap rangsang (Iritabilitas)",
+                    "C. Tumbuh dan berkembang",
+                    "D. Mengeluarkan zat sisa"
+                ],
+                answer: 1,
+                explanation: "Sentuhan merupakan rangsangan fisik. Kemampuan merespons rangsangan disebut Iritabilitas."
+            },
+            {
+                id: 2,
+                question: "Urutan tingkatan takson dari yang tertinggi hingga terkecil pada hewan adalah...",
+                options: [
+                    "A. Kingdom - Filum - Kelas - Ordo - Famili - Genus - Spesies",
+                    "B. Kingdom - Divisi - Kelas - Ordo - Famili - Genus - Spesies",
+                    "C. Spesies - Genus - Famili - Ordo - Kelas - Filum - Kingdom",
+                    "D. Kingdom - Filum - Ordo - Kelas - Famili - Genus - Spesies"
+                ],
+                answer: 0,
+                explanation: "Untuk hewan tingkatan kedua adalah Filum (sedangkan Divisi digunakan untuk tumbuhan)."
+            }
+        ];
+
+        /* Data: Penilaian (Quiz Evaluasi) */
+        const dataQuiz = [
+            {
+                q: "1. Mengapa jamur (Fungi) tidak dimasukkan ke dalam kelompok tumbuhan (Plantae)?",
+                opts: ["A. Jamur tidak bernapas", "B. Jamur tidak memiliki dinding sel", "C. Jamur tidak memiliki klorofil sehingga heterotrof", "D. Jamur bergerak aktif berpindah tempat"],
+                ans: 2
+            },
+            {
+                q: "2. Hewan bernapas dengan paru-paru, menyusui anaknya, dan berdarah panas dikelompokkan dalam kelas...",
+                opts: ["A. Aves", "B. Mamalia", "C. Reptilia", "D. Amphibia"],
+                ans: 1
+            },
+            {
+                q: "3. Langkah pertama dalam membuat kunci determinasi dikotomi adalah...",
+                opts: ["A. Menghitung jumlah spesies", "B. Membagi kelompok menjadi dua ciri yang berlawanan", "C. Menggambar bentuk sel", "D. Memberi nama latin langsung"],
+                ans: 1
+            },
+            {
+                q: "4. Manakah di bawah ini yang merupakan ciri khas kelompok Monera?",
+                opts: ["A. Bersel banyak dan fotosintesis", "B. Prokariotik (tidak memiliki membran inti sel)", "C. Memiliki spora untuk berkembang biak", "D. Memiliki kaki beruas-ruas"],
+                ans: 1
+            },
+            {
+                q: "5. Manusia, kucing, dan ayam sama-sama dimasukkan ke dalam Kingdom Animalia karena...",
+                opts: ["A. Sama-sama berdarah panas", "B. Bersel banyak, eukariotik, dan heterotrof", "C. Bernapas dengan paru-paru", "D. Berkembang biak dengan bertelur"],
+                ans: 1
+            }
+        ];
+
+        /* Data: Mini Game */
+        const gameSpesimens = [
+            {
+                id: 1,
+                name: "Kucing (Felis catus)",
+                clue: "Organisme bertulang belakang, tubuh berambut, dan menyusui anaknya.",
+                icon: "fa-cat",
+                step1: { q: "Pilih ciri awal:", a: "1a. Bertulang Belakang (Vertebrata)", b: "1b. Tidak bertulang belakang", correct: 'a' },
+                step2: { q: "Pilih kelompok spesifik:", a: "2a. Tubuh ditutupi bulu", b: "2b. Memiliki kelenjar susu (Mamalia)", correct: 'b' }
+            },
+            {
+                id: 2,
+                name: "Kupu-Kupu (Lepidoptera)",
+                clue: "Organisme tubuh beruas-ruas, berkaki 6, dan bertelur.",
+                icon: "fa-bug",
+                step1: { q: "Pilih ciri awal:", a: "1a. Bertulang Belakang", b: "1b. Tidak bertulang belakang (Invertebrata)", correct: 'b' },
+                step2: { q: "Pilih kelompok spesifik:", a: "2a. Kaki 6 & bersayap (Insecta)", b: "2b. Kaki 8 tanpa sayap (Arachnida)", correct: 'a' }
+            }
+        ];
+        let currentGameIndex = 0;
+        let gameStep = 1;
+        let gamePoints = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLatihanSoal();
+            renderQuizQuestions();
+            updateProgress();
+            setCertDate();
+        });
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-brand-100');
+            });
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            const targetBtn = document.getElementById(`btn-${tabId}`);
+            
+            if (targetTab) targetTab.classList.remove('hidden');
+            if (targetBtn) {
+                targetBtn.classList.add('tab-active');
+                targetBtn.classList.remove('text-brand-100');
+            }
+
+            if (tabId === 'materi') {
+                currentProgress.materi = true;
+                updateProgress();
+            }
+        }
+
+        function switchMateriSubTab(subId) {
+            document.querySelectorAll('.materi-subcontent').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('[id^="subtab-materi-"]').forEach(btn => {
+                btn.classList.remove('bg-white', 'shadow-sm', 'text-brand-700');
+                btn.classList.add('text-slate-600');
+            });
+
+            document.getElementById(`materi-content-${subId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`subtab-materi-${subId}`);
+            activeBtn.classList.add('bg-white', 'shadow-sm', 'text-brand-700');
+            activeBtn.classList.remove('text-slate-600');
+        }
+
+        /* --- LATIHAN SOAL LOGIC --- */
+        function renderLatihanSoal() {
+            const container = document.getElementById('latihan-container');
+            container.innerHTML = dataLatihan.map((item, index) => `
+                <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <h4 class="font-bold text-sm text-slate-800">${index + 1}. ${item.question}</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        ${item.options.map((opt, oIdx) => `
+                            <button onclick="checkLatihan(${index}, ${oIdx})" id="latihan-opt-${index}-${oIdx}" class="p-3 text-left rounded-xl border border-slate-200 hover:border-brand-400 hover:bg-brand-50/50 transition font-medium">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="latihan-exp-${index}" class="hidden p-3 bg-brand-50 border border-brand-200 rounded-xl text-xs text-brand-900 mt-2">
+                        <strong><i class="fa-solid fa-circle-info mr-1"></i> Pembahasan:</strong> ${item.explanation}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkLatihan(qIdx, optIdx) {
+            const question = dataLatihan[qIdx];
+            const expBox = document.getElementById(`latihan-exp-${qIdx}`);
+            
+            question.options.forEach((_, oIdx) => {
+                const btn = document.getElementById(`latihan-opt-${qIdx}-${oIdx}`);
+                btn.classList.remove('bg-emerald-100', 'border-emerald-500', 'bg-red-100', 'border-red-500');
+                if (oIdx === question.answer) {
+                    btn.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold');
+                } else if (oIdx === optIdx) {
+                    btn.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+
+            expBox.classList.remove('hidden');
+            currentProgress.latihan = true;
+            updateProgress();
+        }
+
+        /* --- MINI GAME LOGIC --- */
+        function startGame() {
+            document.getElementById('game-screen-start').classList.add('hidden');
+            document.getElementById('game-screen-play').classList.remove('hidden');
+            currentGameIndex = 0;
+            gameStep = 1;
+            gamePoints = 0;
+            document.getElementById('game-score').innerText = `${gamePoints} Pts`;
+            loadGameQuestion();
+        }
+
+        function loadGameQuestion() {
+            const item = gameSpesimens[currentGameIndex];
+            document.getElementById('specimen-number').innerText = currentGameIndex + 1;
+            document.getElementById('specimen-icon').className = `fa-solid ${item.icon}`;
+            document.getElementById('specimen-clue').innerText = `"${item.clue}"`;
+
+            const stepObj = gameStep === 1 ? item.step1 : item.step2;
+            const optionsBox = document.getElementById('game-options');
+
+            optionsBox.innerHTML = `
+                <button onclick="handleGameChoice('a')" class="p-4 bg-slate-800 hover:bg-brand-600 rounded-xl text-left border border-slate-700 text-xs font-semibold transition">
+                    ${stepObj.a}
+                </button>
+                <button onclick="handleGameChoice('b')" class="p-4 bg-slate-800 hover:bg-brand-600 rounded-xl text-left border border-slate-700 text-xs font-semibold transition">
+                    ${stepObj.b}
+                </button>
+            `;
+        }
+
+        function handleGameChoice(choice) {
+            const item = gameSpesimens[currentGameIndex];
+            const stepObj = gameStep === 1 ? item.step1 : item.step2;
+
+            if (choice === stepObj.correct) {
+                if (gameStep === 1) {
+                    gameStep = 2;
+                    loadGameQuestion();
+                } else {
+                    // Correct identification
+                    gamePoints += 50;
+                    document.getElementById('game-score').innerText = `${gamePoints} Pts`;
+                    currentGameIndex++;
+                    if (currentGameIndex < gameSpesimens.length) {
+                        gameStep = 1;
+                        loadGameQuestion();
+                    } else {
+                        // Game Clear
+                        document.getElementById('game-screen-play').innerHTML = `
+                            <div class="text-center py-8 space-y-3">
+                                <div class="text-4xl text-amber-400 mb-2"><i class="fa-solid fa-trophy"></i></div>
+                                <h3 class="text-xl font-bold text-white">Hebat! Semua Spesimen Teridentifikasi!</h3>
+                                <p class="text-xs text-slate-300">Kamu berhasil meraih skor sempurna dalam simulasi Kunci Determinasi.</p>
+                                <button onclick="startGame()" class="px-5 py-2 bg-brand-600 rounded-xl text-xs font-bold text-white">Main Lagi</button>
+                            </div>
+                        `;
+                        currentProgress.game = true;
+                        updateProgress();
+                    }
+                }
+            } else {
+                // Wrong choice feedback within box
+                alert("Pilihan kunci determinasi kurang tepat untuk spesimen ini! Coba cermati lagi petunjuknya.");
+            }
+        }
+
+        /* --- EVALUASI / QUIZ LOGIC --- */
+        function renderQuizQuestions() {
+            const qList = document.getElementById('quiz-questions-list');
+            qList.innerHTML = dataQuiz.map((item, idx) => `
+                <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <h4 class="font-bold text-sm text-slate-800">${item.q}</h4>
+                    <div class="space-y-2 text-xs">
+                        ${item.opts.map((opt, oIdx) => `
+                            <label class="flex items-center space-x-2 p-3 rounded-xl border border-slate-100 hover:bg-brand-50/50 cursor-pointer font-medium">
+                                <input type="radio" name="quiz-q-${idx}" value="${oIdx}" class="text-brand-600" required>
+                                <span>${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function startQuiz() {
+            document.getElementById('quiz-start-screen').classList.add('hidden');
+            document.getElementById('quiz-form-screen').classList.remove('hidden');
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            dataQuiz.forEach((item, idx) => {
+                const selected = document.querySelector(`input[name="quiz-q-${idx}"]:checked`);
+                if (selected && parseInt(selected.value) === item.ans) {
+                    score += 20; // 5 questions * 20 = 100 max
+                }
+            });
+
+            currentProgress.quizScore = score;
+            document.getElementById('quiz-score-display').classList.remove('hidden');
+            document.getElementById('final-score-val').innerText = score;
+
+            if (score >= 75) {
+                currentProgress.quizPassed = true;
+                document.getElementById('quiz-status-badge').className = "px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800";
+                document.getElementById('quiz-status-badge').innerText = `Lulus (${score})`;
+                document.getElementById('btn-print-cert').disabled = false;
+            } else {
+                document.getElementById('quiz-status-badge').className = "px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800";
+                document.getElementById('quiz-status-badge').innerText = `Perlu Remidi (${score})`;
+            }
+
+            document.getElementById('cert-display-score').innerText = score;
+            updateProgress();
+            
+            // Auto navigate to result alert / certificate tab if passed
+            alert(`Nilai Evaluasi Kamu: ${score} / 100. ${score >= 75 ? 'Selamat! Kamu berhak mengunduh Sertifikat.' : 'Silakan pelajari materi kembali untuk meningkatkan nilai.'}`);
+            if (score >= 75) switchTab('sertifikat');
+        }
+
+        /* --- REFLEKSI LOGIC --- */
+        function saveRefleksi(e) {
+            e.preventDefault();
+            document.getElementById('refleksi-saved-msg').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('refleksi-saved-msg').classList.add('hidden');
+            }, 3000);
+        }
+
+        /* --- CERTIFICATE LOGIC --- */
+        function updateCertName() {
+            const inputVal = document.getElementById('cert-student-name').value;
+            document.getElementById('cert-display-name').innerText = inputVal.trim() !== "" ? inputVal : "[ Nama Siswa ]";
+        }
+
+        function setCertDate() {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            document.getElementById('cert-date').innerText = today.toLocaleDateString('id-ID', options);
+        }
+
+        /* --- PROGRESS TRACKER --- */
+        function updateProgress() {
+            let percentage = 0;
+            if (currentProgress.materi) percentage += 25;
+            if (currentProgress.game) percentage += 25;
+            if (currentProgress.latihan) percentage += 25;
+            if (currentProgress.quizPassed) percentage += 25;
+
+            document.getElementById('overall-progress-bar').style.width = `${percentage}%`;
+            document.getElementById('overall-progress-text').innerText = `${percentage}%`;
+        }
+    </script>
+</body>
+</html>
